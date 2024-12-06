@@ -50,20 +50,31 @@
                 "score": "2"
             }
         ], 
-    "eval_human_prompt": "Based on the thougths and scores provided evaluate the answer given by the student. Write a short feedback and a give a score.                                 thought1: {thought1},                                score1: {score1},                                thought2: {thought2},                                score2: {score2},                                thought3: {thought3},                                score3: {score3},                                thought4: {thought4},                                score4: {score4},                                The answer given: {answer}", 
+
+    "questiontext": "The question was: ", 
+
+
+    "eval_system_prompt_1": "You are an academic professor evaluating the answers of your students. Below the Human provides the criterions for the evaluation as \"thoughts\". Your goal is to compare each criterion with the answer, give a short feedback, and assign a score. ", 
+    "eval_system_prompt_context": "You might use this context to argument your evauation: ", 
+    "eval_system_prompt_2": " And here are the thougths and their scores by the Human. Rigth after it an example scheme for your evaluation: \n",
+    "eval_human_prompt": "Now based on the thougths and scores provided before evaluate the answer. The answer given: {answer}          Here comes your evaluation in the JSON scheme of the example:", 
+
+    
     "generate_human_prompt": "Based on the topic provided generate further quiz questions in the described format.", 
     "eval_atomic_human_prompt": "  Questiontext: {questiontext},                        Criteria: {criteria},                        Student answer: {answer}", 
     "summaries_human_prompt": "Documented reasoning concatenated into a summary: {reasonings}                                Students answer: {answer}                                Your summary:", 
-    "eval_system_prompt": "You are an academic professor evaluating the answers of your students. Adhere strictly to the format instructions provided.", 
-    "eval_system_prompt_context": "You might use this context to argument your evauation: ", 
-    "questiontext": "The question was", 
-    "generator_context": "The following informations can be used as source for the question generation: ", 
+
     "gen_system_prompt_1": "You are the assistant of an academic professor. Your task is to generate exam questions for the students including the criterion thought they should consider in their answers and the score. Based on the professor's instructions, the main topic of the questions is as follows: ", 
+    "generator_context": "The following informations can be used as source for the question generation: ", 
     "gen_system_prompt_2": ". Create an array of questions containing at least one question. ", 
     "gen_system_prompt_3": " The output should be formatted as a JSON instance that conforms to the following example scheme:", 
+
+
     "example_scheme_generate_assistant": "                                                    [\n                                                        {{\n                                                            \"questiontext\": \"{questiontext}\",\n                                                            \"thought1\": \"{thought1}\",\n                                                            \"score1\": \"{score1}\",\n                                                            \"thought2\": \"{thought2}\",\n                                                            \"score2\": \"{score2}\",\n                                                            \"thought3\": \"{thought3}\",\n                                                            \"score3\": \"{score3}\",\n                                                            \"thought4\": \"{thought4}\",\n                                                            \"score4\": \"{score4}\"\n                                                        }}\n                                                    ]\n                                                  ", 
     "example_scheme_evaluate_human": "Based on the thougths and scores provided evaluate the answer given by the student. Write a short feedback and a give a score.                         thought1: {thought1},                        score1: {score1},                        thought2: {thought2},                        score2: {score2},                        thought3: {thought3},                        score3: {score3},                        thought4: {thought4},                        score4: {score4},                        The answer given: {answer}", 
     "example_scheme_evaluate_assistant": "\n                                                  {{\n                                                      \"feedback\": \"{feedback}\",\n                                                      \"score\": \"{score}\"\n                                                  }}\n                                                  ", 
+    
+    
     "eval_crit_prompt": "As an academic professor, your task is to evaluate the provided student answer. Assess whether the answer meets the specified criteria. The answer does not need to match the criteria word for word, but it should clearly demonstrate the student's understanding of the concept described by the criteria. Provide a well-reasoned short explanation for your decision, using the provided context to support your arguments. Follow the format instructions strictly.", 
     "eval_format_instructions": "The output should be formatted as a JSON instance that conforms to this JSON scheme: \n                                        ```\n                                         {{\"argument\": \"Here comes your argument\", \"score\": \"'True' if the answer provides the thought described in the criteria, 'False' otherwise\"}}\n           Here is an exampe for the JSON instance you have to produce: \n            {{\"argument\": \"The definition is missing from your answer!\", \"score\": \"False\"}}                            ```\n",
     "summarise_eval_system_prompt" : "You are an academic professor evaluating student answers. You have already assessed the answer and documented the reasoning for each evaluation criterion. Now provide a short concise feedback for the student based on the followings."

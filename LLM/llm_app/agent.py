@@ -100,10 +100,6 @@ class LLMAgent:
         return retrieved_docs_escaped
     
     def create_type_filter(self, xurl, xresource):
-        print("create type filter")
-        print("xurl")
-        print(xurl)
-        print(type(xurl))
         type_filter = []
         if xurl == '1':
             type_filter.append("url")
@@ -164,6 +160,11 @@ class LLMAgent:
             example_prompt=self.language_module.example_scheme_evaluate,
             examples=few_shot_examples,
         )
+        
+        print("few_shot_prompt:")
+        print(
+            few_shot_prompt.invoke({"input": "Who was the father of Mary Ball Washington?"}).to_string()
+        )
 
         eval_chat_history = []    
         
@@ -171,6 +172,9 @@ class LLMAgent:
         eval_chat_history.append(("system", system_prompt))
         eval_chat_history.append(few_shot_prompt)
         eval_chat_history.append(("human", self.language_module.eval_human_prompt))  # Escape curly braces
+        
+        print("eval_chat_history:")
+        print(eval_chat_history)
         
         final_evaluator_prompt = ChatPromptTemplate.from_messages(eval_chat_history)
         
@@ -180,14 +184,6 @@ class LLMAgent:
             print("invoke chain")
             completion = chain.invoke({
                     "answer": answer,
-                    "thought1": criterias.get('thought1') if criterias.get('thought1') else "",
-                    "score1": criterias.get('score1', "N/A") if criterias.get('score1') else "",
-                    "thought2": criterias.get('thought2', "N/A") if criterias.get('thought2') else "",
-                    "score2": criterias.get('score2', "N/A") if criterias.get('score2') else "",
-                    "thought3": criterias.get('thought3', "N/A") if criterias.get('thought3') else "",
-                    "score3": criterias.get('score3', "N/A") if criterias.get('score3') else "",
-                    "thought4": criterias.get('thought4', "N/A") if criterias.get('thought4') else "",
-                    "score4": criterias.get('score4', "N/A") if criterias.get('score4') else ""
                 })
         except OpenAIError as e:
             raise OpenAIError(f"{str(e)}")    

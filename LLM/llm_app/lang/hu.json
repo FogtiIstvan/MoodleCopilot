@@ -50,20 +50,27 @@
                 "score": "2" 
             } 
         ], 
-    "eval_human_prompt": "A megadott kritériumok és pontszámok alapján értékeld a választ. Írj egy rövid visszajelzést és adj egy pontszámot.                                 thought1: {thought1},                                score1: {score1},                                thought2: {thought2},                                score2: {score2},                                thought3: {thought3},                                score3: {score3},                                thought4: {thought4},                                score4: {score4},                                Az értékelendő válasz: {answer}", 
+    "questiontext": "A kérdés szövege", 
+    
+    "eval_system_prompt_1": "Egyetemi professzorként értékeled a hallgatóid vizsgakérdésekre adott válaszait értékeled. Az alábbi példában, a \"Human\" által megadott kritériumok mentén kell értékelned, illetve pontoznod. Döntsd el a válaszról egyesével minden kritériumra, hogy megfelel-e.", 
+    "eval_system_prompt_context": "Az alábbi információkat felhasználhatod az értékelésed alátámasztására: ", 
+    "eval_system_prompt_2": " És itt vannak a \"Human\" által megadott kritériumok a pontsámokkal. Egyből utána egy minta az értékelés elvárt sémájára:", 
+    "eval_human_prompt": "Az imént megadott kritériumok és pontszámok alapján értékeld a választ. Az értékelendő válasz: {answer}   Az értékelésed JSON példányként a példa sémának megfelelően:", 
+
+
     "generate_human_prompt": "Generálj a témának megfelelően további kérdéseket a megadott formátumban a minták segítségével!", 
     "eval_atomic_human_prompt": "  A kérdés: {questiontext},                        kritérium: {criteria},                        Hallgató válasza: {answer}", 
     "summaries_human_prompt": "A jegyzeteid a válasz értékelése során: {reasonings}                                A hallgató válasza: {answer}                                A rövid összefoglalód:", 
-    "eval_system_prompt": "Egyetemi professzorként értékeled a hallgatóid vizsgakérdésekre adott válaszait értékeled. Szigorúan követned kell a kimenet formátumára vonatkozó szabályokat.", 
-    "eval_system_prompt_context": "Az alábbi információkat felhasználhatod az értékelésed alátámasztására: ", 
-    "questiontext": "A kérdés szövege", 
+
     "generator_context": "A következő információk felhasználhatóak kérdések generáláshoz: ", 
     "gen_system_prompt_1": "Egy egyetemi professzor asszisztense vagy. Azt a feladatot kaptad, hogy esszé típusú vizsgakérdéseket és hozzájuk tartozó, az elvárt gondolatokat pontszámokkal együtt tartalmazó javítókulcsokat generálj a hallgatók számára. A professzor utasítására a kérdések fő témája a következő:", 
     "gen_system_prompt_2": ". Hozz létre egy kérdéseket tartalmazó tömböt, amely legalább egy kérdést tartalmaz. ", 
     "gen_system_prompt_3": " A kimenetet json formátumban add meg a következő minta sémáknak megfelelő módon:", 
+    
     "example_scheme_generate_assistant": "                                                    [\n                                                        {{\n                                                            \"questiontext\": \"{questiontext}\",\n                                                            \"thought1\": \"{thought1}\",\n                                                            \"score1\": \"{score1}\",\n                                                            \"thought2\": \"{thought2}\",\n                                                            \"score2\": \"{score2}\",\n                                                            \"thought3\": \"{thought3}\",\n                                                            \"score3\": \"{score3}\",\n                                                            \"thought4\": \"{thought4}\",\n                                                            \"score4\": \"{score4}\"\n                                                        }}\n                                                    ]\n                                                  ", 
     "example_scheme_evaluate_human": "A megadott kritériumok és pontszámok alapján értékeld a választ. Írj egy rövid visszajelzést és adj egy pontszámot.                         thought1: {thought1},                        score1: {score1},                        thought2: {thought2},                        score2: {score2},                        thought3: {thought3},                        score3: {score3},                        thought4: {thought4},                        score4: {score4},                        The answer given: {answer}", 
     "example_scheme_evaluate_assistant": "\n                                                  {{\n                                                      \"feedback\": \"{feedback}\",\n                                                      \"score\": \"{score}\"\n                                                  }}\n                                                  ", 
+    
     "eval_crit_prompt": "Egyetemi professzorként a hallgatóid vizsgakérdésekre adott válaszait értékeled. Döntsd el, hogy az adott válasz megfelel-e a kritériumban megfogalmazottaknak. Nem kell szórol szóra pontosnak lennie a válasznak, a lényeg hogy a kritérium és a válasz tartalma egyezzen. Az értékelésedet röviden indokold meg.     A kimeneti formátumra vonatkozó utasításokat szigorúan követned kell.", 
     "eval_format_instructions": "A kimenetnek JSON formátumban kell megjelennie a meghatározott sémának megfelelően.\n        \n                                      A meghatározott kimeneti séma:\n                                        ```\n                                        {{\"argument\": \"Ide jön azértékelésed indoklása\", \"score\": \"'True', ha a válasz tartalmazza a kritériumban leírt gondolatot, 'False' egyébként\"}}\n           Itt egy példa a meghatározott sémára:  {{\"argument\": \"A válaszodból hiányzik a definíció megnevezése!\", \"score\": \"False\"}}                             ```\n",
     "summarise_eval_system_prompt" : "Egyetemi professzorként a hallgatóid vizsgakérdésekre adott válaszait értékeled. A követező kérdésre adott választ már értékelted kritériumonként, most írj egy  nagyon rövid összefoglalót a hallgató számára mi alapján értékelted, a következők alapján!"

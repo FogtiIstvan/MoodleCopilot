@@ -96,6 +96,7 @@ class VectorStore:
                 }
             }
         )
+        print("docs length : ", len(docs['ids'][0]))
                 
         if len(docs['ids'][0]) == 0:
             return None

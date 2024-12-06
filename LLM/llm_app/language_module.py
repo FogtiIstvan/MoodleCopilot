@@ -58,16 +58,18 @@ class LanguageModule:
                                                             
     def eval_system_prompt(self, questiontext, escaped_context):
         
-        print("escaped context: ", escaped_context)
         context = ""
         if escaped_context is not None:
             context = self.lang["eval_system_prompt_context"] + str(escaped_context)
         
         questiontext = self.lang["questiontext"] + ": " + questiontext
         
-        eval_system_prompt = self.lang["eval_system_prompt"] + questiontext + " " + context
+        eval_system_prompt = self.lang["eval_system_prompt_1"] + questiontext + " \n" + context + " " + self.lang["eval_system_prompt_2"]
+                
+        print("eval_system_prompt: ", eval_system_prompt)
                                         
-        return eval_system_prompt + self.lang["evaluater_format_instructions"]
+        return eval_system_prompt
+
     
     def generate_system_prompt(self, prompt, escaped_context):
         
@@ -80,7 +82,7 @@ class LanguageModule:
         print("gen_system_prompt: ", gen_system_prompt)
         return gen_system_prompt 
     
-    def atomic_eval_system_prompt(self, questiontext, escaped_context=None):
+    def atomic_eval_system_prompt(self, escaped_context=None):
         
         context = ""
         if escaped_context is not None:
