@@ -1,0 +1,71 @@
+{
+    "questiontext_desc": "question text",
+    "thought": "One of the criteria to evaluate the answer",
+    "score": "Score of the answer",
+    "feedback_sum": "Feedback for the answer",
+    "score_sum": "Score for the answer as a whole number",
+    "argument_atomic": "Argument on the evaluation of the answer",
+    "score_atomic": "True if the answer provides the thought described in the criteria, False otherwise",
+    "generation_examples": 
+        [
+            {
+                "input": "Generate a quiz question regarding the difference between malloc() and new in C++.", 
+                "questiontext": "Explain the difference between malloc() and new in C++.", 
+                "thought1": "malloc() is a C function used for dynamic memory allocation, while new is a C++ operator that also allocates memory dynamically.", 
+                "score1": "2", 
+                "thought2": "Memory allocated with malloc() must be explicitly deallocated with free(), whereas memory allocated with new should be deallocated with delete.", 
+                "score2": "2", 
+                "thought3": "new is type-safe, whereas malloc() returns a void pointer, requiring explicit type casting.", 
+                "score3": "2", 
+                "thought4": "", 
+                "score4": ""
+            }
+        ], 
+    "evaluation_examples": 
+        [
+            {
+                "answer": "The malloc() function in C is used for allocating memory dynamically, whereas new is an operator in C++ that also performs dynamic memory allocation. Besides allocating memory, new automatically calls the constructor of an object. Memory obtained through malloc() needs to be freed explicitly using free(), while memory allocated with new should be released with delete. Furthermore, new is type-safe, unlike malloc(), which returns a void pointer, making type casting necessary.", 
+                "thought1": "malloc() is a C function used for dynamic memory allocation, while new is a C++ operator that also allocates memory dynamically.", 
+                "score1": "2", 
+                "thought2": "Memory allocated with malloc() must be explicitly deallocated with free(), whereas memory allocated with new should be deallocated with delete.", 
+                "score2": "2", 
+                "thought3": "new is type-safe, whereas malloc() returns a void pointer, requiring explicit type casting.", 
+                "score3": "2", 
+                "thought4": "", 
+                "score4": "", 
+                "feedback": "Your answer was perfect and covered all the important points.", 
+                "score": "6"
+            }, 
+            {
+                "answer": "Encapsulation is the hiding of implementationdetails, and exposing only the functionality.", 
+                "thought1": "Encapsulation is the hiding of implementation details and exposing only the functionality to the user.", 
+                "score1": "2", 
+                "thought2": "Encapsulation is the use of private members to protect data.", 
+                "score2": "2", 
+                "thought3": "", 
+                "score3": "", 
+                "thought4": "", 
+                "score4": "", 
+                "feedback": "Your answe was partially correct: you did not mention the use of private members to protect data.", 
+                "score": "2"
+            }
+        ], 
+    "eval_human_prompt": "Based on the thougths and scores provided evaluate the answer given by the student. Write a short feedback and a give a score.                                 thought1: {thought1},                                score1: {score1},                                thought2: {thought2},                                score2: {score2},                                thought3: {thought3},                                score3: {score3},                                thought4: {thought4},                                score4: {score4},                                The answer given: {answer}", 
+    "generate_human_prompt": "Based on the topic provided generate further quiz questions in the described format.", 
+    "eval_atomic_human_prompt": "  Questiontext: {questiontext},                        Criteria: {criteria},                        Student answer: {answer}", 
+    "summaries_human_prompt": "Documented reasoning concatenated into a summary: {reasonings}                                Students answer: {answer}                                Your summary:", 
+    "eval_system_prompt": "You are an academic professor evaluating the answers of your students. Adhere strictly to the format instructions provided.", 
+    "eval_system_prompt_context": "You might use this context to argument your evauation: ", 
+    "questiontext": "The question was", 
+    "generator_context": "The following informations can be used as source for the question generation: ", 
+    "gen_system_prompt_1": "You are the assistant of an academic professor. Your task is to generate exam questions for the students including the criterion thought they should consider in their answers and the score. Based on the professor's instructions, the main topic of the questions is as follows: ", 
+    "gen_system_prompt_2": ". Create an array of questions containing at least one question. ", 
+    "gen_system_prompt_3": " The output should be formatted as a JSON instance that conforms to the following example scheme:", 
+    "example_scheme_generate_assistant": "                                                    [\n                                                        {{\n                                                            \"questiontext\": \"{questiontext}\",\n                                                            \"thought1\": \"{thought1}\",\n                                                            \"score1\": \"{score1}\",\n                                                            \"thought2\": \"{thought2}\",\n                                                            \"score2\": \"{score2}\",\n                                                            \"thought3\": \"{thought3}\",\n                                                            \"score3\": \"{score3}\",\n                                                            \"thought4\": \"{thought4}\",\n                                                            \"score4\": \"{score4}\"\n                                                        }}\n                                                    ]\n                                                  ", 
+    "example_scheme_evaluate_human": "Based on the thougths and scores provided evaluate the answer given by the student. Write a short feedback and a give a score.                         thought1: {thought1},                        score1: {score1},                        thought2: {thought2},                        score2: {score2},                        thought3: {thought3},                        score3: {score3},                        thought4: {thought4},                        score4: {score4},                        The answer given: {answer}", 
+    "example_scheme_evaluate_assistant": "\n                                                  {{\n                                                      \"feedback\": \"{feedback}\",\n                                                      \"score\": \"{score}\"\n                                                  }}\n                                                  ", 
+    "eval_crit_prompt": "As an academic professor, your task is to evaluate the provided student answer. Assess whether the answer meets the specified criteria. The answer does not need to match the criteria word for word, but it should clearly demonstrate the student's understanding of the concept described by the criteria. Provide a well-reasoned short explanation for your decision, using the provided context to support your arguments. Follow the format instructions strictly.", 
+    "eval_format_instructions": "The output should be formatted as a JSON instance that conforms to this JSON scheme: \n                                        ```\n                                         {{\"argument\": \"Here comes your argument\", \"score\": \"'True' if the answer provides the thought described in the criteria, 'False' otherwise\"}}\n           Here is an exampe for the JSON instance you have to produce: \n            {{\"argument\": \"The definition is missing from your answer!\", \"score\": \"False\"}}                            ```\n",
+    "summarise_eval_system_prompt" : "You are an academic professor evaluating student answers. You have already assessed the answer and documented the reasoning for each evaluation criterion. Now provide a short concise feedback for the student based on the followings."
+
+}

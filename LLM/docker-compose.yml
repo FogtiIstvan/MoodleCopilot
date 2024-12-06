@@ -1,0 +1,29 @@
+version: '3'
+services:
+  llm_app:
+    build: ./llm_app
+    container_name: llm_app
+    networks:
+      - llm_app_network
+    volumes:
+      - ./llm_app/database:/home/appuser/database
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "8080:80"
+      # A külső interfész a 8443 lesz, a belső pedig a 443
+      - "8443:443"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/certs:/etc/nginx/certs
+    depends_on:
+      - llm_app
+    networks:
+      - llm_app_network
+
+networks:
+  llm_app_network:
+    driver: bridge
